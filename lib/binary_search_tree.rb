@@ -19,9 +19,31 @@ class Tree
     return root
   end
 
+  def insert(value, node = @root)
+    return nil if node.data == value
+
+    if value < node.data
+      if node.left.nil?
+        node.left = Node.new(value)
+        return nil
+      else
+        insert(value, node.left)
+      end      
+    else
+      if node.right.nil?
+        node.right = Node.new(value)
+        return nil
+      else
+        insert(value, node.right)
+      end
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
+
+  attr_accessor :root
 end
