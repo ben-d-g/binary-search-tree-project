@@ -39,6 +39,28 @@ class Tree
     end
   end
 
+  def find(value, node = @root)
+    return node if node.data == value
+    return nil if node.num_of_children == 0
+    return find(value, node.left) if value < node.data
+    return find(value, node.right) if value > node.data
+  end
+
+  def in_order_successor(node)
+    return nil if node.right.nil?
+    
+    pointer = node.right
+    until pointer.left.nil?
+      pointer = pointer.left
+    end
+    return pointer
+  end
+
+  def delete(value)
+    return nil if find(value).nil
+
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"

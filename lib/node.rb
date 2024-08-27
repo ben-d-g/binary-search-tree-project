@@ -7,6 +7,16 @@ class Node
     @left = nil
     @right = nil
   end
+
+  def num_of_children
+    return 0 if (@left.nil? and @right.nil?)
+    return 1 if (@left.nil? or @right.nil?)
+    return 2
+  end
+
+  def nil?
+    return @data.nil?
+  end
   
   def <=>(other)
     data <=> other.data

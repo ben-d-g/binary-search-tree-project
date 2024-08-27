@@ -7,3 +7,5 @@ my_tree = Tree.new(my_arr)
 my_tree.insert(22)
 
 my_tree.pretty_print
+
+p(my_tree.in_order_successor(my_tree.find(8)).data)
