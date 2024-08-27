@@ -56,9 +56,21 @@ class Tree
     return pointer
   end
 
-  def delete(value)
-    return nil if find(value).nil
-
+  def delete(node)
+    if node.num_of_children == 0
+      node.delete
+    elsif node.num_of_children == 2
+      node.set_data(in_order_successor(node).data)
+      in_order_successor(node).delete
+    else
+      if not node.left.nil?
+        node.set_data(node.left.data)
+        delete(node.left)
+      else
+        node.set_data(node.right.data)
+        delete(node.right)
+      end
+    end
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true)

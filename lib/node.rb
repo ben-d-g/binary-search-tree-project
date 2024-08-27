@@ -21,4 +21,14 @@ class Node
   def <=>(other)
     data <=> other.data
   end
+
+  def set_data(value)
+    @data = value
+  end
+
+  def delete
+    @data = nil
+    @left = nil
+    @right = nil
+  end
 end

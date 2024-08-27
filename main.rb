@@ -9,3 +9,7 @@ my_tree.insert(22)
 my_tree.pretty_print
 
 p(my_tree.in_order_successor(my_tree.find(8)).data)
+
+my_tree.delete(my_tree.find(23))
+
+my_tree.pretty_print
