@@ -1,27 +1,40 @@
 require_relative("lib/node")
 require_relative("lib/binary_search_tree")
 
-my_arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-my_tree = Tree.new(my_arr)
+#Create a binary search tree from an array of random numbers
+tree = Tree.new(Array.new(15){rand(1..100)})
 
-puts(my_tree.balanced?)
+#Confirm that the tree is balanced by calling #balanced?
+puts(tree.balanced?)
 
-my_tree.insert(22)
+#Print out all elements in level, pre, post, and in order
+puts()
+tree.in_order
+puts()
+tree.preorder
+puts()
+tree.postorder
+puts()
+tree.in_order
 
-my_tree.pretty_print
+#Unbalance the tree by adding several numbers > 100
+0.upto(5){tree.insert(rand(200..300))}
 
-p(my_tree.in_order_successor(my_tree.find(67)).data)
+#Confirm that the tree is unbalanced by calling #balanced?
+puts(tree.balanced?)
 
-my_tree.pretty_print
+#Balance the tree by calling #rebalance
+tree.rebalance
 
-puts(my_tree.depth(my_tree.find(22)))
+#Confirm that the tree is balanced by calling #balanced?
+puts(tree.balanced?)
 
-my_tree.pretty_print
-
-puts(my_tree.balanced?)
-
-my_tree.rebalance
-
-my_tree.pretty_print
-
-puts(my_tree.balanced?)
+#Print out all elements in level, pre, post, and in order
+puts()
+tree.in_order
+puts()
+tree.preorder
+puts()
+tree.postorder
+puts()
+tree.in_order
