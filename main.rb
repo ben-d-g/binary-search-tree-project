@@ -10,8 +10,12 @@ my_tree.pretty_print
 
 p(my_tree.in_order_successor(my_tree.find(8)).data)
 
-my_tree.delete(67)
-
 my_tree.pretty_print
 
-my_tree.level_order{|node| puts((node.data.to_i + 2).to_s)}
+
+
+my_tree.in_order{|node| puts((node.data.to_i + 2).to_s)}
+
+my_tree.delete(67)
+
+my_tree.postorder

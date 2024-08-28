@@ -100,6 +100,42 @@ class Tree
     level_order(queue, &block)
   end
 
+  def in_order(node = @root, &block)
+    unless node.nil?
+      in_order(node.left, &block)
+      if block_given?
+        block.call(node)
+      else
+        puts(node.data)
+      end
+      in_order(node.right, &block)
+    end
+  end
+
+  def preorder(node = @root, &block)
+    unless node.nil?
+      if block_given?
+        block.call(node)
+      else
+        puts(node.data)
+      end
+      preorder(node.left, &block)
+      preorder(node.right, &block)
+    end
+  end
+
+  def postorder(node = @root, &block)
+    unless node.nil?
+      postorder(node.left, &block)
+      postorder(node.right, &block)
+      if block_given?
+        block.call(node)
+      else
+        puts(node.data)
+      end
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
