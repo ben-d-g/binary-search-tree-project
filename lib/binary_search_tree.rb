@@ -77,7 +77,7 @@ class Tree
     node
   end
 
-  def level_order(queue = [@root])
+  def level_order(queue = [@root], &block)
     #if queue is empty, we are done
     if queue == []
       return nil
@@ -88,15 +88,16 @@ class Tree
 
     #deal with front of queue
     if block_given?
-      yield node
+      block.call(node)
     else
-      puts node.data
+      puts(node.data)
     end
+    #block(node)
 
     #add children to queue
     queue += [node.left, node.right].compact
 
-    level_order(queue)
+    level_order(queue, &block)
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true)
