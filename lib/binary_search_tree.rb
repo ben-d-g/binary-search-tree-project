@@ -141,11 +141,6 @@ class Tree
     return [height(node.left), height(node.right)].max + 1
   end
 
-  # def depth(value)
-  #   return -1 if find(value).nil?
-  #   return depth_recursion(value)
-  # end
-
   def depth(node, pointer = @root)
     return -1 if node.nil?
     return 0 if node.data == pointer.data
@@ -156,6 +151,11 @@ class Tree
       return 1 if node.data == pointer.right.data
       return depth(node, pointer.right) + 1
     end
+  end
+
+  def balanced?(node = @root)
+    return true if node.nil?
+    return (balanced?(node.left) and balanced?(node.right) and (height(node.left) - height(node.right)).abs <= 1)
   end
 
   def pretty_print(node = @root, prefix = '', is_left = true)
