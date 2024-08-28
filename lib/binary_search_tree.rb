@@ -136,6 +136,28 @@ class Tree
     end
   end
 
+  def height(node)
+    return -1 if node.nil?
+    return [height(node.left), height(node.right)].max + 1
+  end
+
+  # def depth(value)
+  #   return -1 if find(value).nil?
+  #   return depth_recursion(value)
+  # end
+
+  def depth(node, pointer = @root)
+    return -1 if node.nil?
+    return 0 if node.data == pointer.data
+    if node.data < pointer.data
+      return 1 if node.data == pointer.left.data
+      return depth(node, pointer.left) + 1
+    else
+      return 1 if node.data == pointer.right.data
+      return depth(node, pointer.right) + 1
+    end
+  end
+
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
