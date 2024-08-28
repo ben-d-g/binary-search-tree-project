@@ -19,3 +19,9 @@ puts(my_tree.depth(my_tree.find(22)))
 my_tree.pretty_print
 
 puts(my_tree.balanced?)
+
+my_tree.rebalance
+
+my_tree.pretty_print
+
+puts(my_tree.balanced?)
