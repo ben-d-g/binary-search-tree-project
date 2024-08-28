@@ -13,3 +13,5 @@ p(my_tree.in_order_successor(my_tree.find(8)).data)
 my_tree.delete(67)
 
 my_tree.pretty_print
+
+my_tree.level_order
